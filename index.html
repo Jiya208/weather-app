@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .location {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .current-weather {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .temperature {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: #1a3c40;
+        }
+
+        .weather-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+            color: #2980b9;
+        }
+
+        .weather-description {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .detail {
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .detail i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+
+        .forecast {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .forecast h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-size: 2rem;
+        }
+
+        .forecast-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .forecast-day {
+            background: rgba(236, 240, 241, 0.7);
+            border-radius: 15px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .forecast-day:hover {
+            transform: translateY(-5px);
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .day-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .forecast-icon {
+            font-size: 2.5rem;
+            margin: 15px 0;
+            color: #2980b9;
+        }
+
+        .forecast-temp {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        .forecast-high {
+            color: #e74c3c;
+        }
+
+        .forecast-low {
+            color: #2980b9;
+            font-weight: 400;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 900px) {
+            .forecast-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .location {
+                font-size: 2rem;
+            }
+            
+            .temperature {
+                font-size: 3.5rem;
+            }
+            
+            .weather-icon {
+                font-size: 4rem;
+            }
+            
+            .forecast-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .forecast-day {
+                padding: 15px 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .forecast-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .temperature {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="location">New York, NY</div>
+            <div class="date">Monday, October 16, 2023</div>
+        </header>
+        
+        <main>
+            <section class="current-weather">
+                <div class="temperature">22°C</div>
+                <div class="weather-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="weather-description">Sunny</div>
+                <div class="details">
+                    <div class="detail">
+                        <i class="fas fa-wind"></i>
+                        <div>Wind</div>
+                        <div>5 km/h</div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-tint"></i>
+                        <div>Humidity</div>
+                        <div>65%</div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <div>Pressure</div>
+                        <div>1015 hPa</div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-eye"></i>
+                        <div>Visibility</div>
+                        <div>10 km</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="forecast">
+                <h2>5-Day Forecast</h2>
+                <div class="forecast-container">
+                    <div class="forecast-day">
+                        <div class="day-name">Tue</div>
+                        <div class="forecast-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="forecast-temp forecast-high">24°C</div>
+                        <div class="forecast-temp forecast-low">17°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="day-name">Wed</div>
+                        <div class="forecast-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="forecast-temp forecast-high">22°C</div>
+                        <div class="forecast-temp forecast-low">16°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="day-name">Thu</div>
+                        <div class="forecast-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="forecast-temp forecast-high">19°C</div>
+                        <div class="forecast-temp forecast-low">14°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="day-name">Fri</div>
+                        <div class="forecast-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="forecast-temp forecast-high">21°C</div>
+                        <div class="forecast-temp forecast-low">15°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="day-name">Sat</div>
+                        <div class="forecast-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="forecast-temp forecast-high">23°C</div>
+                        <div class="forecast-temp forecast-low">16°C</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+```
+
